@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription École de Tennis - Azur Tennis Sports Valrose</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #2563eb;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9fafb;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            cursor: pointer;
+            display: inline;
+            font-weight: normal;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #ef4444;
+        }
+        
+        .submit-button {
+            background-color: #2563eb;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-button:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .submit-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .info-box {
+            background-color: #f0f9ff;
+            border: 1px solid #3b82f6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2563eb;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #eff6ff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FICHE D'INSCRIPTION ÉCOLE DE TENNIS</h1>
+            <h2>AZUR TENNIS SPORTS VALROSE</h2>
+            <p>ANNÉE 2025-2026</p>
+        </div>
+        
+        <div class="form-container">
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+            
+            <div class="info-box">
+                <strong>Important :</strong> Les champs marqués d'un astérisque (*) sont obligatoires.
+            </div>
+            
+            <!-- Section Informations personnelles -->
+            <div class="section">
+                <h3 class="section-title">Informations personnelles</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nom" class="required">Nom</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prenom" class="required">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dateNaissance" class="required">Date de naissance</label>
+                        <input type="date" id="dateNaissance" name="dateNaissance" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" id="adresse" name="adresse">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="codePostalVille">Code Postal et Ville</label>
+                        <input type="text" id="codePostalVille" name="codePostalVille">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telPort">Tél Port.</label>
+                        <input type="tel" id="telPort" name="telPort">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="niveauTennis">Niveau tennis (couleur)</label>
+                        <input type="text" id="niveauTennis" name="niveauTennis" placeholder="Ex: Orange, Vert...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mail" class="required">Email</label>
+                        <input type="email" id="mail" name="mail" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section École Tennis -->
+            <div class="section">
+                <h3 class="section-title">ÉCOLE TENNIS</h3>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="babyTennis" name="babyTennis" value="240">
+                    <label for="babyTennis">BABY TENNIS (à partir de 3 ans) - 1h/semaine <strong>240€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="miniTennis" name="miniTennis" value="250">
+                    <label for="miniTennis">MINI TENNIS (à partir de 5 ans) - 1h/semaine <strong>250€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="initiation" name="initiation" value="260">
+                    <label for="initiation">INITIATION (à partir de 7 ans) - 1h/semaine <strong>260€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="perfectionnementTennis" name="perfectionnementTennis" value="350">
+                    <label for="perfectionnementTennis">PERFECTIONNEMENT (à partir de 7 ans) - 1h30/semaine <strong>350€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="centreEntrainement" name="centreEntrainement" value="720">
+                    <label for="centreEntrainement">CENTRE D'ENTRAINEMENT (à partir de 7 ans) - 2X 1h30/semaine <strong>720€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coursAdultesTennis" name="coursAdultesTennis" value="520">
+                    <label for="coursAdultesTennis">COURS ADULTES (à partir de 18 ans) - 1h30/semaine <strong>520€/an</strong> ou 180€/trimestre</label>
+                </div>
+            </div>
+            
+            <!-- Section École Padel -->
+            <div class="section">
+                <h3 class="section-title">ÉCOLE PADEL</h3>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="perfectionnementPadel" name="perfectionnementPadel" value="420">
+                    <label for="perfectionnementPadel">PERFECTIONNEMENT (à partir de 7 ans) - 1h30/semaine <strong>420€</strong></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coursAdultesPadel" name="coursAdultesPadel" value="680">
+                    <label for="coursAdultesPadel">COURS ADULTES (à partir de 18 ans) - 1h30/semaine <strong>680€</strong> ou 240€/trimestre</label>
+                </div>
+            </div>
+            
+            <!-- Section École Tennis Padel -->
+            <div class="section">
+                <h3 class="section-title">ÉCOLE TENNIS PADEL</h3>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="formuleMixte" name="formuleMixte" value="490">
+                    <label for="formuleMixte">Formule mixte (à partir de 7 ans) - 1h30/semaine <strong>490€</strong></label>
+                </div>
+            </div>
+            
+            <!-- Section Nouveautés -->
+            <div class="section">
+                <h3 class="section-title">NOUVEAUTÉS</h3>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="formuleDemiJournee" name="formuleDemiJournee" value="750">
+                    <label for="formuleDemiJournee">Formule demi-journée le mercredi matin 9h-12h ou après-midi 14h-17h <strong>750€</strong></label>
+                </div>
+            </div>
+            
+            <!-- Section Disponibilités -->
+            <div class="section">
+                <h3 class="section-title">DISPONIBILITÉS (par ordre de préférence)</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="dispMercredi">Mercredi :</label>
+                        <input type="text" id="dispMercredi" name="dispMercredi" placeholder="Ex: 14h-16h">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dispSamedi">Samedi :</label>
+                        <input type="text" id="dispSamedi" name="dispSamedi" placeholder="Ex: 10h-12h">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dispSemaine">Semaine (à partir de 17h) :</label>
+                        <input type="text" id="dispSemaine" name="dispSemaine" placeholder="Ex: Lundi, Mardi">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section Règlement -->
+            <div class="section">
+                <h3 class="section-title">RÈGLEMENT</h3>
+                
+                <div class="form-group">
+                    <label for="modePaiement">Mode de paiement</label>
+                    <select id="modePaiement" name="modePaiement">
+                        <option value="">Sélectionner...</option>
+                        <option value="Espèces">Espèces</option>
+                        <option value="Chèques">Chèques</option>
+                        <option value="Plusieurs fois">Paiement en plusieurs fois</option>
+                    </select>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="licenceFFT" name="licenceFFT">
+                    <label for="licenceFFT">Licence FFT obligatoire : <strong>23€</strong> pour les 7-18 ans | <strong>13€</strong> pour les 6 ans et -</label>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="montantPaye">Montant payé (€)</label>
+                        <input type="number" id="montantPaye" name="montantPaye" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="statutPaiement">Statut du paiement</label>
+                        <select id="statutPaiement" name="statutPaiement">
+                            <option value="Non payé">Non payé</option>
+                            <option value="Payé partiellement">Payé partiellement</option>
+                            <option value="Payé intégralement">Payé intégralement</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="totalPrice" class="total-price">
+                Total à payer : 0€
+            </div>
+            
+            <div class="info-box">
+                <p><strong>FIN ÉCOLE DE TENNIS :</strong> Samedi 21 et Mercredi 20 Juin 2026.</p>
+            </div>
+            
+            <button type="submit" id="submitButton" class="submit-button" onclick="submitForm()">
+                Enregistrer l'inscription
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration - REMPLACEZ PAR VOTRE URL DE GOOGLE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = 'VOTRE_URL_GOOGLE_APPS_SCRIPT_ICI';
+        
+        // Calcul du prix total
+        function calculateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][value]:checked');
+            checkboxes.forEach(checkbox => {
+                total += parseInt(checkbox.value);
+            });
+            
+            // Ajouter la licence FFT si cochée
+            if (document.getElementById('licenceFFT').checked) {
+                const dateNaissance = document.getElementById('dateNaissance').value;
+                if (dateNaissance) {
+                    const age = calculateAge(dateNaissance);
+                    total += age <= 6 ? 13 : 23;
+                }
+            }
+            
+            document.getElementById('totalPrice').textContent = `Total à payer : ${total}€`;
+            return total;
+        }
+        
+        // Calculer l'âge
+        function calculateAge(birthDate) {
+            const today = new Date();
+            const birth = new Date(birthDate);
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            return age;
+        }
+        
+        // Ajouter les événements pour recalculer le total
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', calculateTotal);
+        });
+        
+        document.getElementById('dateNaissance').addEventListener('change', calculateTotal);
+        
+        // Fonction de soumission du formulaire
+        function submitForm() {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            // Vérifier les champs obligatoires
+            const requiredFields = ['nom', 'prenom', 'dateNaissance', 'mail'];
+            const missingFields = [];
+            
+            requiredFields.forEach(field => {
+                const value = document.getElementById(field).value.trim();
+                if (!value) {
+                    missingFields.push(field);
+                }
+            });
+            
+            if (missingFields.length > 0) {
+                errorDiv.textContent = 'Veuillez remplir tous les champs obligatoires.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Collecter toutes les données
+            const formData = {
+                dateInscription: new Date().toLocaleDateString('fr-FR'),
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                dateNaissance: document.getElementById('dateNaissance').value,
+                adresse: document.getElementById('adresse').value,
+                codePostalVille: document.getElementById('codePostalVille').value,
+                telPort: document.getElementById('telPort').value,
+                niveauTennis: document.getElementById('niveauTennis').value,
+                mail: document.getElementById('mail').value,
+                // Cours sélectionnés
+                babyTennis: document.getElementById('babyTennis').checked ? 'Oui' : 'Non',
+                miniTennis: document.getElementById('miniTennis').checked ? 'Oui' : 'Non',
+                initiation: document.getElementById('initiation').checked ? 'Oui' : 'Non',
+                perfectionnementTennis: document.getElementById('perfectionnementTennis').checked ? 'Oui' : 'Non',
+                centreEntrainement: document.getElementById('centreEntrainement').checked ? 'Oui' : 'Non',
+                coursAdultesTennis: document.getElementById('coursAdultesTennis').checked ? 'Oui' : 'Non',
+                perfectionnementPadel: document.getElementById('perfectionnementPadel').checked ? 'Oui' : 'Non',
+                coursAdultesPadel: document.getElementById('coursAdultesPadel').checked ? 'Oui' : 'Non',
+                formuleMixte: document.getElementById('formuleMixte').checked ? 'Oui' : 'Non',
+                formuleDemiJournee: document.getElementById('formuleDemiJournee').checked ? 'Oui' : 'Non',
+                // Disponibilités
+                dispMercredi: document.getElementById('dispMercredi').value,
+                dispSamedi: document.getElementById('dispSamedi').value,
+                dispSemaine: document.getElementById('dispSemaine').value,
+                // Règlement
+                modePaiement: document.getElementById('modePaiement').value,
+                licenceFFT: document.getElementById('licenceFFT').checked ? 'Oui' : 'Non',
+                totalAPayer: calculateTotal(),
+                montantPaye: document.getElementById('montantPaye').value || '0',
+                statutPaiement: document.getElementById('statutPaiement').value,
+                resteAPayer: calculateTotal() - (parseFloat(document.getElementById('montantPaye').value) || 0)
+            };
+            
+            // Si l'URL Google Script n'est pas configurée, afficher les données
+            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxo1E1_64RI6dlXRRCr1Bo9_u2f1Mqbg8sQGd-zqzdiZtWG-1pRTwMCU_5gQIZnjISlPg/exec') {
+                alert('⚠️ ATTENTION : L\'URL Google Apps Script n\'est pas configurée !\n\nVoici les données qui auraient été envoyées :\n\n' + JSON.stringify(formData, null, 2));
+                console.log('Données du formulaire :', formData);
+                return;
+            }
+            
+            // Désactiver le bouton pendant l'envoi
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Envoi en cours...';
+            
+            // Envoyer les données à Google Sheets
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                successDiv.textContent = 'Inscription enregistrée avec succès !';
+                successDiv.style.display = 'block';
+                
+                // Réinitialiser le formulaire
+                document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"]').forEach(input => {
+                    input.value = '';
+                });
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                document.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+                calculateTotal();
+                
+                // Faire défiler vers le haut
+                window.scrollTo(0, 0);
+            })
+            .catch(error => {
+                errorDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+                errorDiv.style.display = 'block';
+                console.error('Erreur:', error);
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enregistrer l\'inscription';
+            });
+        }
+    </script>
+</body>
+</html>
