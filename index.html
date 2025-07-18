@@ -1,97 +1,208 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Inscription École de Tennis - Azur Sports Valrose</title>
+  <meta charset="UTF-8" />
+  <title>Fiche d'inscription École de Tennis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* ----------- Base layout ----------- */
+    body   {font-family: Arial, sans-serif;background:#f4f6f9;margin:0;padding:0}
+    .card  {max-width: 880px;margin:20px auto;background:#fff;border-radius:4px;
+            box-shadow:0 2px 6px rgba(0,0,0,.1);padding:30px}
+    h1,h2  {margin:0}
+    h1     {font-size:26px;color:#fff}
+    h2     {font-size:18px;color:#fff;font-weight:400;letter-spacing:.5px}
+    .hero  {background:#0d6efd;padding:30px 10px;border-radius:4px 4px 0 0;
+            text-align:center}
+    label  {font-weight:600;margin-top:18px;display:block}
+    input,select{
+      width:100%;padding:10px;border:1px solid #ced4da;border-radius:4px;
+      font-size:14px;box-sizing:border-box
+    }
+    fieldset{border:1px solid #dee2e6;border-radius:4px;padding:15px;margin-top:25px}
+    legend {font-weight:700;padding:0 6px}
+    .row   {display:flex;gap:20px}
+    .col   {flex:1}
+    .alert {border-radius:4px;padding:12px 16px;margin-bottom:20px}
+    .alert-success{background:#d1e7dd;border:1px solid #badbcc;color:#0f5132}
+    .alert-info   {background:#e7f1ff;border:1px solid #b6d4fe;color:#084298}
+    .checkbox-line{display:flex;align-items:center;margin:6px 0;font-weight:400}
+    .checkbox-line input{margin-right:8px}
+    .radio-line   {margin:4px 0}
+    .btn{
+      width:100%;padding:14px;font-size:16px;color:#fff;background:#0d6efd;
+      border:none;border-radius:4px;cursor:pointer;margin-top:25px
+    }
+    .btn:hover{background:#0b5ed7}
+    .totalBox{
+      background:#e9f4ff;border:1px solid #b6d4fe;padding:12px;text-align:center;
+      font-weight:700;color:#0d6efd;border-radius:4px;margin-top:20px
+    }
+    @media(max-width:640px){.row{flex-direction:column}}
+  </style>
 </head>
 <body>
 
-  <h1>Inscription École de Tennis</h1>
+<div class="card">
 
-  <!-- Iframe invisible pour soumission sans rechargement -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <!-- Bandeau bleu -->
+  <div class="hero">
+    <h1>FICHE D'INSCRIPTION ÉCOLE DE TENNIS</h1>
+    <h2>AZUR TENNIS SPORTS VALROSE<br>ANNÉE 2025‑2026</h2>
+  </div>
 
-  <form action="https://script.google.com/macros/s/AKfycbxkuL5-ytURQcaWU8pxW-E05rHEJwNizs58HB9h6eLRx_kaKn_K0PYDaiTT5M4PvhYn/exec"
-        method="POST"
-        target="hidden_iframe"
-        onsubmit="document.getElementById('confirmation').style.display = 'block';">
+  <!-- message succès -->
+  <div id="successBox" class="alert alert-success" style="display:none">
+    Inscription enregistrée avec succès !
+  </div>
 
-    <!-- Informations personnelles -->
-    <label>Date inscription :
-      <input name="dateInscription" type="date" lang="fr" placeholder="jj/mm/aaaa" required>
-    </label><br><br>
+  <!-- message info -->
+  <div class="alert alert-info">
+    <strong>Important :</strong> Les champs marqués d'un astérisque (*) sont obligatoires.
+  </div>
 
-    <label>Nom : <input name="nom" required></label><br>
-    <label>Prénom : <input name="prenom" required></label><br>
+  <form id="tennisForm"
+        action="https://script.google.com/macros/s/AKfycbxkuL5-ytURQcaWU8pxW-E05rHEJwNizs58HB9h6eLRx_kaKn_K0PYDaiTT5M4PvhYn/exec"
+        method="POST" target="hidden_iframe"
+        onsubmit="document.getElementById('successBox').style.display='block'">
 
-    <label>Date de naissance :
-      <input name="dateNaissance" type="date" lang="fr"
-             placeholder="jj/mm/aaaa" required>
-    </label><br>
+    <!-- -------- Informations personnelles -------- -->
+    <h3>Informations personnelles</h3>
 
-    <label>Adresse : <input name="adresse"></label><br>
-    <label>Code postal et ville : <input name="codePostalVille"></label><br>
+    <div class="row">
+      <div class="col">
+        <label>Nom *<input name="nom" required></label>
+      </div>
+      <div class="col">
+        <label>Prénom *<input name="prenom" required></label>
+      </div>
+    </div>
 
-    <label>Téléphone portable :
-      <input name="telPort" type="tel" required>
-    </label><br>
+    <div class="row">
+      <div class="col">
+        <label>Date de naissance *
+          <input name="dateNaissance" type="date" lang="fr" placeholder="jj/mm/aaaa" required>
+        </label>
+      </div>
+      <div class="col">
+        <label>Tél Port. *<input name="telPort" type="tel" required></label>
+      </div>
+    </div>
 
-    <label>Niveau tennis : <input name="niveauTennis"></label><br>
-    <label>Email : <input name="mail" type="email" required></label><br><br>
+    <div class="row">
+      <div class="col">
+        <label>Adresse<input name="adresse"></label>
+      </div>
+      <div class="col">
+        <label>Code Postal et Ville<input name="codePostalVille"></label>
+      </div>
+    </div>
 
-    <!-- Cours choisis -->
+    <div class="row">
+      <div class="col">
+        <label>Niveau tennis (couleur)<input name="niveauTennis" placeholder="Ex : Orange, Vert…"></label>
+      </div>
+      <div class="col">
+        <label>Email *<input name="mail" type="email" required></label>
+      </div>
+    </div>
+
+    <!-- -------- Cours -------- -->
     <fieldset>
-      <legend>Cours choisis</legend>
-      <label><input type="checkbox" name="babyTennis" value="Oui"> Baby Tennis</label><br>
-      <label><input type="checkbox" name="miniTennis" value="Oui"> Mini Tennis</label><br>
-      <label><input type="checkbox" name="initiation" value="Oui"> Initiation</label><br>
-      <label><input type="checkbox" name="perfectionnementTennis" value="Oui"> Perfectionnement Tennis</label><br>
-      <label><input type="checkbox" name="centreEntrainement" value="Oui"> Centre Entraînement</label><br>
-      <label><input type="checkbox" name="coursAdultesTennis" value="Oui"> Cours Adultes Tennis</label><br>
-      <label><input type="checkbox" name="perfectionnementPadel" value="Oui"> Perfectionnement Padel</label><br>
-      <label><input type="checkbox" name="coursAdultesPadel" value="Oui"> Cours Adultes Padel</label><br>
-      <label><input type="checkbox" name="formuleMixte" value="Oui"> Formule Mixte</label><br>
-      <label><input type="checkbox" name="formuleDemiJournee" value="Oui"> Formule Demi‑journée</label>
-    </fieldset><br>
+      <legend>ÉCOLE TENNIS</legend>
+      <div class="checkbox-line"><input type="checkbox" name="babyTennis" value="Oui"> BABY TENNIS – 1 h/sem  <strong>240 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="miniTennis" value="Oui"> MINI TENNIS – 1 h/sem  <strong>250 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="initiation" value="Oui"> INITIATION – 1 h/sem  <strong>260 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="perfectionnementTennis" value="Oui"> PERFECTIONNEMENT – 1 h30/sem  <strong>350 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="centreEntrainement" value="Oui"> CENTRE D'ENTRAÎNEMENT – 2×1 h30/sem  <strong>720 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="coursAdultesTennis" value="Oui"> COURS ADULTES – 1 h30/sem  <strong>520 €/an</strong> ou 180 €/trimestre</div>
+    </fieldset>
 
-    <!-- Disponibilités -->
     <fieldset>
-      <legend>Disponibilités</legend>
-      <label>Mercredi : <input name="dispMercredi" placeholder="ex : matin ou après‑midi"></label><br>
-      <label>Samedi : <input name="dispSamedi" placeholder="ex : matin ou après‑midi"></label><br>
-      <label>Semaine : <input name="dispSemaine" placeholder="ex : mardi soir, jeudi"></label><br>
-    </fieldset><br>
+      <legend>ÉCOLE PADEL</legend>
+      <div class="checkbox-line"><input type="checkbox" name="perfectionnementPadel" value="Oui"> PERFECTIONNEMENT – 1 h30/sem  <strong>420 €</strong></div>
+      <div class="checkbox-line"><input type="checkbox" name="coursAdultesPadel" value="Oui"> COURS ADULTES – 1 h30/sem  <strong>680 €</strong> ou 240 €/trimestre</div>
+    </fieldset>
 
-    <!-- Paiement -->
-    <label>Mode de paiement : <input name="modePaiement"></label><br>
-
-    <!-- Licence FFT avec deux montants -->
     <fieldset>
-      <legend>Licence FFT obligatoire</legend>
-      <label>
-        <input type="radio" name="licenceFFT" value="23" required>
-        23 € (7 – 18 ans)
-      </label><br>
-      <label>
-        <input type="radio" name="licenceFFT" value="13">
-        13 € (6 ans et ‑)
+      <legend>ÉCOLE TENNIS PADEL</legend>
+      <div class="checkbox-line"><input type="checkbox" name="formuleMixte" value="Oui"> Formule mixte – 1 h30/sem  <strong>490 €</strong></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Nouveautés</legend>
+      <div class="checkbox-line"><input type="checkbox" name="formuleDemiJournee" value="Oui"> Formule demi‑journée (mercredi 9‑12 h ou 14‑17 h)  <strong>750 €</strong></div>
+    </fieldset>
+
+    <!-- -------- Disponibilités -------- -->
+    <fieldset>
+      <legend>Disponibilités (par ordre de préférence)</legend>
+      <div class="row">
+        <div class="col"><label>Mercredi :<input name="dispMercredi" placeholder="Ex : 14h‑16h"></label></div>
+        <div class="col"><label>Samedi :<input name="dispSamedi" placeholder="Ex : 10h‑12h"></label></div>
+      </div>
+      <label>Semaine (à partir de 17 h) :<input name="dispSemaine" placeholder="Ex : Lundi, Mardi"></label>
+    </fieldset>
+
+    <!-- -------- Paiement -------- -->
+    <fieldset>
+      <legend>Règlement</legend>
+      <label>Mode de paiement
+        <select name="modePaiement">
+          <option value="">Sélectionner…</option>
+          <option>Espèces</option><option>Chèques</option><option>Plusieurs fois</option>
+        </select>
       </label>
-    </fieldset><br>
 
-    <label>Total à payer (€) :
-      <input name="totalAPayer" type="number" step="0.01">
-    </label><br>
+      <p><strong>Licence FFT obligatoire :</strong></p>
+      <div class="radio-line"><input type="radio" name="licenceFFT" value="23" required> 23 € (7‑18 ans)</div>
+      <div class="radio-line"><input type="radio" name="licenceFFT" value="13"> 13 € (6 ans et ‑)</div>
 
-    <!-- Montant payé & Statut paiement retirés -->
+      <label>Total à payer (€) :
+        <input name="totalAPayer" type="number" step="0.01">
+      </label>
 
-    <label>Reste à payer (€) :
-      <input name="resteAPayer" type="number" step="0.01">
-    </label><br><br>
+      <label>Reste à payer (€) :
+        <input name="resteAPayer" type="number" step="0.01">
+      </label>
+    </fieldset>
 
-    <button type="submit">Envoyer l'inscription</button>
+    <!-- Total affichage (facultatif) -->
+    <div class="totalBox" id="totalBox">Total à payer : 0 €</div>
+
+    <p style="margin-top:15px"><strong>FIN ÉCOLE DE TENNIS :</strong> Samedi 21 et Mercredi 20 Juin 2026.</p>
+
+    <button class="btn" type="submit">Enregistrer l'inscription</button>
   </form>
 
-  <p id="confirmation" style="display:none; color:green;">✅ Inscription envoyée avec succès !</p>
+  <!-- Iframe caché -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+</div>
+
+<script>
+/* --- petit calcul auto du total (coût des cases + licence) --- */
+const prices = {
+  babyTennis:240, miniTennis:250, initiation:260, perfectionnementTennis:350,
+  centreEntrainement:720, coursAdultesTennis:520, perfectionnementPadel:420,
+  coursAdultesPadel:680, formuleMixte:490, formuleDemiJournee:750
+};
+
+function calcTotal(){
+  let total=0;
+  Object.keys(prices).forEach(id=>{
+    if(document.querySelector('input[name="'+id+'"]').checked){ total+=prices[id]; }
+  });
+  const lic=document.querySelector('input[name="licenceFFT"]:checked');
+  if(lic) total+= parseInt(lic.value,10);
+  document.getElementById('totalBox').textContent="Total à payer : "+total+" €";
+}
+
+document.querySelectorAll('input[type="checkbox"],input[name="licenceFFT"]').forEach(el=>{
+  el.addEventListener('change',calcTotal);
+});
+calcTotal();
+</script>
 
 </body>
 </html>
