@@ -8,6 +8,7 @@
 
   <h1>Inscription École de Tennis</h1>
 
+  <!-- Iframe invisible pour soumission sans rechargement -->
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
   <form action="https://script.google.com/macros/s/AKfycbxkuL5-ytURQcaWU8pxW-E05rHEJwNizs58HB9h6eLRx_kaKn_K0PYDaiTT5M4PvhYn/exec"
@@ -15,14 +16,26 @@
         target="hidden_iframe"
         onsubmit="document.getElementById('confirmation').style.display = 'block';">
 
-    <label>Date inscription : <input name="dateInscription" type="date" required></label><br><br>
+    <!-- Informations personnelles -->
+    <label>Date inscription :
+      <input name="dateInscription" type="date" lang="fr" placeholder="jj/mm/aaaa" required>
+    </label><br><br>
 
     <label>Nom : <input name="nom" required></label><br>
     <label>Prénom : <input name="prenom" required></label><br>
-    <label>Date de naissance : <input name="dateNaissance" type="date" required></label><br>
+
+    <label>Date de naissance :
+      <input name="dateNaissance" type="date" lang="fr"
+             placeholder="jj/mm/aaaa" required>
+    </label><br>
+
     <label>Adresse : <input name="adresse"></label><br>
     <label>Code postal et ville : <input name="codePostalVille"></label><br>
-    <label>Téléphone : <input name="telPort" type="tel"></label><br>
+
+    <label>Téléphone portable :
+      <input name="telPort" type="tel" required>
+    </label><br>
+
     <label>Niveau tennis : <input name="niveauTennis"></label><br>
     <label>Email : <input name="mail" type="email" required></label><br><br>
 
@@ -38,38 +51,47 @@
       <label><input type="checkbox" name="perfectionnementPadel" value="Oui"> Perfectionnement Padel</label><br>
       <label><input type="checkbox" name="coursAdultesPadel" value="Oui"> Cours Adultes Padel</label><br>
       <label><input type="checkbox" name="formuleMixte" value="Oui"> Formule Mixte</label><br>
-      <label><input type="checkbox" name="formuleDemiJournee" value="Oui"> Formule Demi-journée</label>
+      <label><input type="checkbox" name="formuleDemiJournee" value="Oui"> Formule Demi‑journée</label>
     </fieldset><br>
 
     <!-- Disponibilités -->
     <fieldset>
       <legend>Disponibilités</legend>
-      <label>Mercredi : <input name="dispMercredi" placeholder="ex: matin ou après-midi"></label><br>
-      <label>Samedi : <input name="dispSamedi" placeholder="ex: matin ou après-midi"></label><br>
-      <label>Semaine : <input name="dispSemaine" placeholder="ex: mardi soir, jeudi"></label><br>
+      <label>Mercredi : <input name="dispMercredi" placeholder="ex : matin ou après‑midi"></label><br>
+      <label>Samedi : <input name="dispSamedi" placeholder="ex : matin ou après‑midi"></label><br>
+      <label>Semaine : <input name="dispSemaine" placeholder="ex : mardi soir, jeudi"></label><br>
     </fieldset><br>
 
     <!-- Paiement -->
     <label>Mode de paiement : <input name="modePaiement"></label><br>
-    <label>Licence FFT : <select name="licenceFFT">
-      <option value="Non">Non</option>
-      <option value="Oui">Oui</option>
-    </select></label><br>
-    <label>Total à payer (€) : <input name="totalAPayer" type="number" step="0.01"></label><br>
-    <label>Montant payé (€) : <input name="montantPaye" type="number" step="0.01"></label><br>
-    <label>Statut paiement :
-      <select name="statutPaiement">
-        <option value="Non payé">Non payé</option>
-        <option value="Payé partiellement">Payé partiellement</option>
-        <option value="Payé intégralement">Payé intégralement</option>
-      </select>
+
+    <!-- Licence FFT avec deux montants -->
+    <fieldset>
+      <legend>Licence FFT obligatoire</legend>
+      <label>
+        <input type="radio" name="licenceFFT" value="23" required>
+        23 € (7 – 18 ans)
+      </label><br>
+      <label>
+        <input type="radio" name="licenceFFT" value="13">
+        13 € (6 ans et ‑)
+      </label>
+    </fieldset><br>
+
+    <label>Total à payer (€) :
+      <input name="totalAPayer" type="number" step="0.01">
     </label><br>
-    <label>Reste à payer (€) : <input name="resteAPayer" type="number" step="0.01"></label><br><br>
+
+    <!-- Montant payé & Statut paiement retirés -->
+
+    <label>Reste à payer (€) :
+      <input name="resteAPayer" type="number" step="0.01">
+    </label><br><br>
 
     <button type="submit">Envoyer l'inscription</button>
   </form>
 
-  <p id="confirmation" style="display:none; color:green;">✅ Inscription envoyée avec succès !</p>
+  <p id="confirmation" style="display:none; color:green;">✅ Inscription envoyée avec succès !</p>
 
 </body>
 </html>
