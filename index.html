@@ -397,7 +397,18 @@
             <div class="reglement">
                 <div class="reglement-title">RÈGLEMENT :</div>
                 <div class="reglement-content">
-                    Espèces : ........... Chèques : ........ possibilité de paiement en plusieurs fois
+                    <div class="disp-item">
+                        <label for="modePaiement">Mode de paiement :</label>
+                        <select name="modePaiement" id="modePaiement" style="border: none; border-bottom: 1px dotted #333; padding: 5px; background: transparent; flex: 1;">
+                            <option value="">-- Sélectionner --</option>
+                            <option value="Espèces">Espèces</option>
+                            <option value="Chèque">Chèque</option>
+                            <option value="Virement">Virement</option>
+                            <option value="2 fois">2 fois</option>
+                            <option value="3 fois">3 fois</option>
+                            <option value="4 fois">4 fois</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="licence-section">
@@ -489,7 +500,7 @@
                 dispMercredi: formData.get('dispMercredi') || '',
                 dispSamedi: formData.get('dispSamedi') || '',
                 dispSemaine: formData.get('dispSemaine') || '',
-                modePaiement: '',
+                modePaiement: formData.get('modePaiement') || '',
                 licenceFFT: formData.get('licenceFFT') || 'Non',
                 totalAPayer: 0,
                 montantPaye: 0,
