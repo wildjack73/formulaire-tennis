@@ -243,7 +243,7 @@
         
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         
-        <form id="inscriptionForm" onsubmit="submitForm(event)">
+        <form action="https://script.google.com/macros/s/AKfycbySufHDwIMYeihL9sgGYY6oYr3mNHkwAUpXtVWiM6zpQm2lfKBnM7ctNVrw9LJniU8i/exec" method="POST" target="hidden_iframe" onsubmit="showSuccessMessage(); return true;">
             
             <div class="personal-info">
                 <div class="info-row">
@@ -444,9 +444,6 @@
     </div>
 
     <script>
-        // URL de votre script Google Apps Script
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeBtyM0PFkc3nlYIDpwuKxQz6xE_eBhOd_SDGXvX1mf9FUsv6F5lLhBe7vpF1awESQtQ/exec';
-
         // Formatage automatique de la date
         function setupDateFormatting() {
             const dateInput = document.getElementById('dateNaissance');
@@ -468,74 +465,6 @@
                     e.target.value = formattedValue;
                 });
             }
-        }
-
-        function submitForm(event) {
-            event.preventDefault();
-            
-            // Récupérer toutes les données du formulaire
-            const formData = new FormData(event.target);
-            
-            // Créer un objet avec les données
-            const data = {
-                dateInscription: new Date().toLocaleDateString('fr-FR'),
-                nom: formData.get('nom') || '',
-                prenom: formData.get('prenom') || '',
-                dateNaissance: formData.get('dateNaissance') || '',
-                adresse: formData.get('adresse') || '',
-                codePostalVille: formData.get('codePostalVille') || '',
-                telPort: formData.get('telPort') || '',
-                niveauTennis: formData.get('niveauTennis') || '',
-                mail: formData.get('mail') || '',
-                babyTennis: formData.get('babyTennis') || 'Non',
-                miniTennis: formData.get('miniTennis') || 'Non',
-                initiation: formData.get('initiation') || 'Non',
-                perfectionnementTennis: formData.get('perfectionnementTennis') || 'Non',
-                centreEntrainement: formData.get('centreEntrainement') || 'Non',
-                coursAdultesTennis: formData.get('coursAdultesTennis') || 'Non',
-                perfectionnementPadel: formData.get('perfectionnementPadel') || 'Non',
-                coursAdultesPadel: formData.get('coursAdultesPadel') || 'Non',
-                formuleMixte: formData.get('formuleMixte') || 'Non',
-                formuleDemiJournee: formData.get('formuleDemiJournee') || 'Non',
-                dispMercredi: formData.get('dispMercredi') || '',
-                dispSamedi: formData.get('dispSamedi') || '',
-                dispSemaine: formData.get('dispSemaine') || '',
-                modePaiement: formData.get('modePaiement') || '',
-                licenceFFT: formData.get('licenceFFT') || 'Non',
-                totalAPayer: 0,
-                montantPaye: 0,
-                statutPaiement: 'Non payé',
-                resteAPayer: 0
-            };
-
-            // DEBUG : Afficher les données dans la console
-            console.log('Données à envoyer:', data);
-            
-            // Afficher un popup temporaire avec les données
-            alert('Données capturées:\n' + 
-                  'Nom: ' + data.nom + '\n' + 
-                  'Prénom: ' + data.prenom + '\n' + 
-                  'Email: ' + data.mail + '\n' + 
-                  'Mode paiement: ' + data.modePaiement + '\n' + 
-                  'Licence: ' + data.licenceFFT);
-
-            // Envoyer les données au script Google Apps Script
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
-                console.log('Envoi réussi');
-                showSuccessMessage();
-            })
-            .catch((error) => {
-                console.error('Erreur:', error);
-                showSuccessMessage(); // Afficher le succès même en cas d'erreur à cause du mode no-cors
-            });
         }
 
         function showSuccessMessage() {
