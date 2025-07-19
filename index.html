@@ -508,6 +508,17 @@
                 resteAPayer: 0
             };
 
+            // DEBUG : Afficher les données dans la console
+            console.log('Données à envoyer:', data);
+            
+            // Afficher un popup temporaire avec les données
+            alert('Données capturées:\n' + 
+                  'Nom: ' + data.nom + '\n' + 
+                  'Prénom: ' + data.prenom + '\n' + 
+                  'Email: ' + data.mail + '\n' + 
+                  'Mode paiement: ' + data.modePaiement + '\n' + 
+                  'Licence: ' + data.licenceFFT);
+
             // Envoyer les données au script Google Apps Script
             fetch(SCRIPT_URL, {
                 method: 'POST',
@@ -518,6 +529,7 @@
                 body: JSON.stringify(data)
             })
             .then(() => {
+                console.log('Envoi réussi');
                 showSuccessMessage();
             })
             .catch((error) => {
